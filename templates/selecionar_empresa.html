@@ -1,0 +1,65 @@
+<!-- templates/selecionar_empresa.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecionar Empresa</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Link para seu CSS, se necessário -->
+</head>
+<body>
+    <h1>Selecionar Empresa</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="empresa">Selecione uma Empresa:</label>
+        <select name="empresa_id" id="empresa" onchange="this.form.submit()">
+            <option value="">-- Selecione uma empresa --</option>
+            {% for empresa in empresas %}
+                <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if redes %}
+        <h2>Redes da Empresa Selecionada</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="empresa_id" value="{{ empresas.first.id }}">
+            <label for="rede">Selecione uma Rede:</label>
+            <select name="rede_id" id="rede" onchange="this.form.submit()">
+                <option value="">-- Selecione uma rede --</option>
+                {% for rede in redes %}
+                    <option value="{{ rede.id }}">{{ rede.nome }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    {% endif %}
+
+    {% if carros %}
+        <h2>Carros da Rede Selecionada</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do Carro</th>
+                    <th>IP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for carro in carros %}
+                    <tr>
+                        <td>{{ carro.carro }}</td>
+                        <td>{{ carro.ip }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2">Nenhum carro cadastrado nessa rede.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>

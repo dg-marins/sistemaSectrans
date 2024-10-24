@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import selecionar_empresa
 
 urlpatterns = [
-    path('', views.index, name='index'),
+     path('selecionar-empresa/', selecionar_empresa, name='selecionar_empresa'),
 ]
