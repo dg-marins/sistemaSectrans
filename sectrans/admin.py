@@ -5,4 +5,5 @@ from .models import *
 admin.site.register(ModelosEquipamento)
 admin.site.register(Empresas)
 admin.site.register(Redes)
+admin.site.register(Carros)
 
