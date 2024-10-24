@@ -13,6 +13,13 @@ body {
     margin: 0;
     padding: 0;
     color: var(--cor-hover-menu);
+    min-height: 100vh; /* altura mínima da página */
+    display: flex;
+    flex-direction: column; /* flexbox para o layout da página */
+}
+
+main {
+    flex: 1; /* faz o conteúdo principal ocupar o espaço restante */
 }
 
 /* Cabeçalho */
@@ -126,7 +133,7 @@ footer {
     padding: 5px;
     background-color: var(--cor-principal);
     color: var(--cor-terciaria);
-    position: fixed;
     width: 100%;
+    position: relative; /* Remova o fixed */
     bottom: 0;
 }
