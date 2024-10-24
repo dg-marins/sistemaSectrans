@@ -32,3 +32,7 @@ class Redes(models.Model):
 
     def __str__(self):
         return self.rede
+    
+
+    def __str__(self):
+        return self.rede
