@@ -21,11 +21,14 @@ class Empresas(models.Model):
 
 class Redes(models.Model):
 
+    CRIPTOGRAFIA = {"WPA": "WPA",
+                    "WEP": "WEP"}
+
     rede = models.CharField(max_length=20, null=False, unique=True, blank=False)
     chave = models.CharField(max_length=30, null=False, blank=False)
     ativa = models.BooleanField(default=True)
     empresa = models.ForeignKey(Empresas, on_delete=models.SET_NULL, null=True, blank=True)
-    criptografia = models.CharField(max_length=10, null=False, blank=False)
+    criptografia = models.CharField(choices=CRIPTOGRAFIA, null=False, blank=False)
 
     def __str__(self):
         return self.rede
