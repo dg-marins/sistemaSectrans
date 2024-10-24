@@ -3,7 +3,6 @@ from datetime import datetime
 
 class ModeloEquipamentos(models.Model):
 
-    id = models.AutoField(primary_key=True)
     modelo = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
@@ -16,7 +15,20 @@ class Empresa(models.Model):
     vpn = models.CharField(max_length=100, default='')
     data_cadastro = models.DateTimeField(default=datetime.now, blank=False)
     ativa = models.BooleanField(default=True)
-    
+
     # Relaciona o campo modelo com a tabela de modelo de equipamento
     modelo = models.ForeignKey(ModeloEquipamentos, on_delete=models.SET_NULL, null=True, blank=True)
 
+    def __str__(self):
+        return self.nome
+
+class Rede(models.Model):
+
+    rede = models.CharField(max_length=20, null=False, unique=True, blank=False)
+    chave = models.CharField(max_length=30, null=False, blank=False)
+    ativa = models.BooleanField(default=True)
+    empresa_id = models.IntegerField(null=False, blank=False)
+    criptografia = models.CharField(max_length=10, null=False, blank=False)
+
+    def __str__(self):
+        return self.rede
