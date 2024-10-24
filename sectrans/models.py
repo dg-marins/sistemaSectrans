@@ -1,17 +1,16 @@
 from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 from django.core.exceptions import ValidationError
 import re
 from datetime import datetime
 
-class ModelosEquipamento(models.Model):
+class Modelo_Equipamento(models.Model):
+
     modelo = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
         return self.modelo
 
-class Empresas(models.Model):
+class Empresa(models.Model):
     nome = models.CharField(max_length=150, null=False, blank=False)
     razao_social = models.CharField(max_length=255, null=False, blank=False)
     vpn = models.CharField(max_length=100, default='')
@@ -21,34 +20,34 @@ class Empresas(models.Model):
     def __str__(self):
         return self.nome
 
-class Redes(models.Model):
+class Rede(models.Model):
     CRIPTOGRAFIA = {"WPA": "WPA", "WEP": "WEP"}
 
-    rede = models.CharField(max_length=20, null=False, unique=True, blank=False)
+    nome = models.CharField(max_length=20, null=False, unique=True, blank=False)
     chave = models.CharField(max_length=30, null=False, blank=False)
     ativa = models.BooleanField(default=True)
-    empresa = models.ForeignKey(Empresas, on_delete=models.SET_NULL, null=True, blank=True)
+    empresa = models.ForeignKey(Empresa, on_delete=models.SET_NULL, null=True, blank=True)
     criptografia = models.CharField(choices=CRIPTOGRAFIA, null=False, blank=False)
     ip_servidor = models.CharField(max_length=11, null=False, blank=False, default='192.168.0.1')
 
     def __str__(self):
-        return self.rede
+        return self.nome
 
-class Carros(models.Model):
-    carro = models.CharField(max_length=20, null=False, blank=False)
-    empresa = models.ForeignKey(Empresas, on_delete=models.SET_NULL, null=True, blank=False)
-    rede = models.ForeignKey(Redes, on_delete=models.SET_NULL, null=True, blank=False)
-    modelo = models.ForeignKey(ModelosEquipamento, on_delete=models.SET_NULL, null=True, blank=False)
+class Carro(models.Model):
+    nome = models.CharField(max_length=20, null=False, blank=False)
+    empresa = models.ForeignKey(Empresa, on_delete=models.SET_NULL, null=True, blank=False)
+    rede = models.ForeignKey(Rede, on_delete=models.SET_NULL, null=True, blank=False)
+    modelo = models.ForeignKey(Modelo_Equipamento, on_delete=models.SET_NULL, null=True, blank=False)
     serial = models.CharField(max_length=30, blank=True)
     ip = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
-        return self.carro
+        return self.nome
 
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['ip', 'rede'], name='unique_ip_per_rede'),
-            models.UniqueConstraint(fields=['carro', 'empresa'], name='unique_carro_per_empresa')
+            models.UniqueConstraint(fields=['nome', 'empresa'], name='unique_carro_per_empresa')
         ]
 
     def clean(self):
@@ -79,7 +78,7 @@ class Carros(models.Model):
         
     def get_next_valid_ip(self):
         """Retorna o próximo IP válido na rede associada."""
-        utilizados = Carros.objects.filter(rede=self.rede).values_list('ip', flat=True)
+        utilizados = Carro.objects.filter(rede=self.rede).values_list('ip', flat=True)
         rede_ip_base = self.rede.ip_servidor.rsplit('.', 1)[0]  # Base do IP da rede
         ip_servidor = self.rede.ip_servidor
 
