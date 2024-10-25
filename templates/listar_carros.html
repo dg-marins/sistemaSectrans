@@ -1,0 +1,44 @@
+<!-- templates/listar_carros.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carros da Empresa</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header_logo_content">
+                <img src="{% static 'assets/logo_sectrans.png' %}" alt="logo_Sectrans">
+            </div>
+            <div class="header_page_top">
+                <ul class="header_page_top_navbar">
+                    <li class="header_page_top_navbar_item"><a href="#">Home</a></li>
+                    <li class="header_page_top_navbar_item"><a href="#">Gravação</a></li>
+                    <li class="header_page_top_navbar_item"><a href="#">Contact</a></li>
+                    <li class="header_page_top_navbar_item"><a href="#">About</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="principal">
+            <h2>Carros da Empresa: {{ empresa.nome }}</h2>
+            <ul>
+                {% for carro in carros %}
+                    <li>{{ carro.nome }}</li>
+                {% empty %}
+                    <li>Nenhum carro encontrado.</li>
+                {% endfor %}
+            </ul>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Sectrans. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>

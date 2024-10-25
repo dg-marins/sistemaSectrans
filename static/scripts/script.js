@@ -32,39 +32,10 @@ function listarEmpresas(){
     atualizarSelect("empresas", listaEmpresas)
 }
 
-// FUNÇÃO TESTE, MOKANDO DADOS.
-function listarCarros(idEmpresaSelecionada) {
-    var carros;
-    switch (idEmpresaSelecionada) {
-        case "2":
-            carros = [
-                {text: "20501", id:1},
-                {text: "20502", id:2},
-                {text: "20503", id:3}
-            ]
-            break;
-        case "3":
-            // Se o ID for 3, faça algo diferente
-            carros = [
-                {text: "30501", id:1},
-                {text: "30502", id:2},
-                {text: "30503", id:3}
-            ]
-            break;
-        case "4":
-            // Se o ID for 4, faça outra coisa
-            carros = [
-                {text: "40501", id:1},
-                {text: "40502", id:2},
-                {text: "40503", id:3}
-            ]
-            break;
-        default:
-            // Se o ID não corresponder a nenhum dos casos acima
-            console.log("ID não reconhecido");
+function listarCarros(empresaId){
+    if (empresaId){
+        window.location.href = '/empresas/' + empresaId + '/carros/';
     }
-    atualizarSelect("carros", carros)
-    console.log(carros)
 }
 
 function modifyDisplay(ids, exibition){
