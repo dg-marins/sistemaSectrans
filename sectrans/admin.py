@@ -3,11 +3,25 @@ from .models import *
 
 #Registra os modelos no admin
 admin.site.register(Modelo_Equipamento)
-admin.site.register(Empresa)
-admin.site.register(Rede)
 
+class ListandoEmpresa(admin.ModelAdmin):
+    list_display = ("nome", "razao_social", "vpn", "ativa",)
+    list_display_links = ("nome", "razao_social",)
+    list_editable = ("ativa",)
+
+admin.site.register(Empresa, ListandoEmpresa)
+
+class ListandoRedes(admin.ModelAdmin):
+    list_display = ("nome", "chave", "empresa", "criptografia", "ip_servidor",)
+    search_fields = ("nome",)
+
+admin.site.register(Rede, ListandoRedes)
 
 class CarrosAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "empresa", "rede", "modelo", "ip",)
+    list_editable = ("ip",)
+
     # Para exibir campos no formulário de edição, mas não no cadastro
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
