@@ -29,7 +29,11 @@
             <div class="principal_conteudo_gravacao">
                 <h2>Gravação de Mídia</h2><br>
                 <label class="principal_conteudo_gravacao_labbels" for="empresas">Selecione uma empresa:</label>
-                <select class="principal_conteudo_gravacao_selects" id="empresas" onchange="listarCarros(this.value)">
+                <select class="principal_conteudo_gravacao_selects" id="empresas">
+                    <option value="">Selecione a Empresa</option>
+                    {% for empresa in empresas %}
+                        <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
+                    {% endfor %}
                 </select><br>
 
                 <label class="principal_conteudo_gravacao_labbels" for="carros">Selecione um carro:</label>
