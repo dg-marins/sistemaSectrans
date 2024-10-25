@@ -1,6 +1,6 @@
 # views.py
 from django.shortcuts import render, get_object_or_404
-from .models import Empresa, Carro
+from .models import Empresa, Carro, Modelo_Equipamento
 from django.http import JsonResponse
 
 def selecionar_empresa(request):
@@ -18,7 +18,14 @@ def listar_carros(request, empresa_id):
         carros = Carro.objects.filter(empresa_id=empresa_id).order_by('nome').values('id', 'nome')
         return JsonResponse({'carros': list(carros)})
     
-    # Se não for uma requisição AJAX, renderiza o template normalmente
     carros = Carro.objects.filter(empresa_id=empresa_id).order_by('nome')
     return render(request, 'listar_carros.html', {'empresa': empresa, 'carros': carros})
+
+def listar_modelos(request, carro_id):
+    carro = get_object_or_404(Carro, id=carro_id)
+    
+    # Verificando se a requisição é AJAX
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        modelos = Modelo_Equipamento.objects.filter(veiculo=carro).order_by('modelo').values('id', 'modelo')
+        return JsonResponse({'modelos': list(modelos)})
 

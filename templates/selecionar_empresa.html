@@ -37,12 +37,11 @@
                 </select><br>
 
                 <label class="principal_conteudo_gravacao_labbels" for="carros">Selecione um carro:</label>
-                <select class="principal_conteudo_gravacao_selects" id="carros"></select><br>
+                <select class="principal_conteudo_gravacao_selects" id="carros" disabled></select><br>
 
                 <label class="principal_conteudo_gravacao_labbels" for="modelo_equipamento">Modelo de Equipamento:</label>
-                <select class="principal_conteudo_gravacao_selects" id="modelo_equipamento" onchange="atualizarParametrosGravacao(this.value)">
-                    <option value="RaspDvr">RaspDvr</option>
-                    <option value="NX">NX</option>
+                <select class="principal_conteudo_gravacao_selects" id="modelo_equipamento" disabled>
+                    <option value="">Selecione um modelo</option>
                 </select><br>
 
                 <button class="principal_conteudo_gravacao_botao" onclick="solicitarGravacao()">Solicitar Gravação</button>

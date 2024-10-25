@@ -20,21 +20,15 @@ function atualizarSelect(selectId, listItens){
     });
 }
 
-function listarEmpresas(){
-    var listaEmpresas = [
-        {text: "Tijuquinha", id: 2},
-        {text: "Graças", id: 3},
-        {text: "Sãen Pena, SJC", id: 4}
-    ];
-
-    var selectEmpresas = document.getElementById("empresas");
-
-    atualizarSelect("empresas", listaEmpresas)
-}
-
-function listarCarros(empresaId){
-    if (empresaId){
-        window.location.href = '/empresas/' + empresaId + '/carros/';
+function listarCarros(empresaId) {
+    if (empresaId) {
+        fetch(`/empresas/${empresaId}/carros/`)
+            .then(response => response.json())
+            .then(data => {
+                // Atualize o select de carros com os dados recebidos
+                atualizarSelect("carros", data.carros);
+            })
+            .catch(error => console.error('Erro ao listar carros:', error));
     }
 }
 
