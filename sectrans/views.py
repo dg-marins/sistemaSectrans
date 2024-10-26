@@ -49,3 +49,7 @@ def login_view(request):
 
 def home_view(request):
     return render(request, 'login.html')
+
+def gravar(request):
+    empresas = Empresa.objects.all().order_by('nome')
+    return render(request, 'gravar.html', {'empresas': empresas})

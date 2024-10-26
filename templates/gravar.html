@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="principal">
+    <div class="principal_conteudo_gravacao">
+        <h2>Gravação de Mídia</h2><br>
+        <label class="principal_conteudo_gravacao_labbels" for="empresas">Selecione uma empresa:</label>
+        <select class="principal_conteudo_gravacao_selects" id="empresas" onchange="listarCarros(this.value)">
+            <option value="">Selecione a Empresa</option>
+            {% for empresa in empresas %}
+                <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label class="principal_conteudo_gravacao_labbels" for="carros">Selecione um carro:</label>
+        <select class="principal_conteudo_gravacao_selects" id="carros" disabled></select><br>
+
+        <label class="principal_conteudo_gravacao_labbels" for="modelo_equipamento">Modelo de Equipamento:</label>
+        <select class="principal_conteudo_gravacao_selects" id="modelo_equipamento" disabled>
+            <option value="">Selecione um modelo</option>
+        </select><br>
+
+        <button class="principal_conteudo_gravacao_botao" onclick="solicitarGravacao()">Solicitar Gravação</button>
+    </div>
+</main>
+
+{% endblock %}
