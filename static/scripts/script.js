@@ -21,14 +21,27 @@ function atualizarSelect(selectId, listItens){
 }
 
 function listarCarros(empresaId) {
+    const carrosSelect = document.getElementById("carros");
+
+    // Limpa as opções anteriores
+    carrosSelect.innerHTML = '<option value="" disabled selected>Selecione carro</option>';
+    carrosSelect.disabled = true;
+
     if (empresaId) {
-        fetch(`/empresas/${empresaId}/carros/`)
+        fetch(`/listar_carros/${empresaId}/`)
             .then(response => response.json())
             .then(data => {
-                // Atualize o select de carros com os dados recebidos
-                atualizarSelect("carros", data.carros);
+                if (data.length > 0) {
+                    carrosSelect.disabled = false;
+                    data.forEach(carro => {
+                        const option = document.createElement("option");
+                        option.value = carro.id;
+                        option.textContent = carro.nome;
+                        carrosSelect.appendChild(option);
+                    });
+                }
             })
-            .catch(error => console.error('Erro ao listar carros:', error));
+            .catch(error => console.error("Erro ao carregar carros:", error));
     }
 }
 

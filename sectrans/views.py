@@ -31,3 +31,7 @@ def listar_modelos(request, carro_id):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         modelos = Modelo_Equipamento.objects.filter(veiculo=carro).order_by('modelo').values('id', 'modelo')
         return JsonResponse({'modelos': list(modelos)})
+    
+def listar_carros(request, empresa_id):
+    carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome')
+    return JsonResponse(list(carros), safe=False)
