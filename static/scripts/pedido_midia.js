@@ -12,7 +12,7 @@ function listarModelos(){
                 modelosSelect.disabled = false;
                 data.forEach(modelo =>{
                     const option = document.createElement("option");
-                    option.value = modelo.id;
+                    option.value = modelo.modelo;
                     option.textContent = modelo.modelo;
                     modelosSelect.appendChild(option);
                 });
@@ -36,7 +36,7 @@ function listarCarros(empresaId) {
                     carrosSelect.disabled = false;
                     data.forEach(carro => {
                         const option = document.createElement("option");
-                        option.value = carro.id;
+                        option.value = carro.nome;
                         option.textContent = carro.nome;
                         carrosSelect.appendChild(option);
                     });
@@ -46,6 +46,12 @@ function listarCarros(empresaId) {
     }
 }
 
-function solicitarGravacao(){
-    
+function solicitarGravacao() {
+    var empresa = document.getElementById("empresas").value;
+    var carro = document.getElementById("carros").value;
+    var modeloEquipamento = document.getElementById("modelo_equipamento").value;
+    // var dvr = document.getElementById("dvr_select").value;
+    // var cameras = document.getElementById("cameras_select").value;
+
+    alert("Empresa: " + empresa + "\nCarro: " + carro + "\nModelo de Equipamento: " + modeloEquipamento);
 }
