@@ -24,13 +24,9 @@ def pedido_midia(request):
     empresas = Empresa.objects.all().order_by('nome')
     return render(request, 'pedido_midia.html', {'empresas': empresas})
 
-def listar_modelos(request, carro_id):
-    carro = get_object_or_404(Carro, id=carro_id)
-    
-    # Verificando se a requisição é AJAX
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        modelos = Modelo_Equipamento.objects.filter(veiculo=carro).order_by('modelo').values('id', 'modelo')
-        return JsonResponse({'modelos': list(modelos)})
+def listar_modelos(request):
+    modelos = Modelo_Equipamento.objects.all().order_by('modelo').values('id', 'modelo')
+    return JsonResponse(list(modelos), safe=False)
     
 def listar_carros(request, empresa_id):
     carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome')

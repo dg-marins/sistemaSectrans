@@ -14,7 +14,7 @@
         </select><br>
 
         <label class="principal_conteudo_gravacao_labbels" for="carros">Selecione um carro:</label>
-        <select class="principal_conteudo_gravacao_selects" id="carros" disabled>
+        <select class="principal_conteudo_gravacao_selects" id="carros" onchange="listarModelos()" disabled>
             <option value="" disabled selected>Selecione carro</option>
             {% for carro in carros %}
                 <option value="{{ carro.id }}">{{ carro.nome }}</option>
@@ -33,4 +33,5 @@
     </div>
 </main>
 
+<script src="{% static 'scripts/pedido_midia.js' %}"></script>
 {% endblock %}
