@@ -43,13 +43,6 @@ function atualizarParametrosGravacao(modeloEquipamento){
     }
 }
 
-// Executar a função listarEmpresas() quando o DOM estiver pronto
 document.addEventListener("DOMContentLoaded", function() {
-        // Obtendo o nome do arquivo HTML atual
-        var currentPage = window.location.pathname.split("/").pop();
-
-        // Verificando se a página atual é gravacao.html
-        if (currentPage === "gravacao.html") {
-            listarEmpresas();
-        }
+    listarEmpresas(); // Carrega as empresas ao inicializar a página
 });
