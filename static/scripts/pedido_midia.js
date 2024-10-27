@@ -1,3 +1,23 @@
+function listarEmpresas(){
+    const empresaSelect = document.getElementById("empresas");
+
+    empresaSelect.innerHTML = '<option value="" disabled selected>Selecione Empresa</option>';
+
+    fetch('/listar_empresas/')
+        .then(response => response.json())
+        .then(data => {
+            if(data.length > 0){
+                data.forEach(empresa =>{
+                    const option = document.createElement("option");
+                    option.value = empresa.id;
+                    option.textContent = empresa.nome;
+                    empresaSelect.appendChild(option);
+                });
+            }
+        })
+        .catch(error => console.error('Erro ao carregar empresas:', error));
+}
+
 function listarModelos(){
     const modelosSelect = document.getElementById("modelo_equipamento");
 
@@ -11,7 +31,7 @@ function listarModelos(){
                 modelosSelect.disabled = false;
                 data.forEach(modelo =>{
                     const option = document.createElement("option");
-                    option.value = modelo.modelo;
+                    option.value = modelo.id;
                     option.textContent = modelo.modelo;
                     modelosSelect.appendChild(option);
                 });
@@ -35,7 +55,7 @@ function listarCarros(empresaId) {
                     carrosSelect.disabled = false;
                     data.forEach(carro => {
                         const option = document.createElement("option");
-                        option.value = carro.nome;
+                        option.value = carro.id;
                         option.textContent = carro.nome;
                         carrosSelect.appendChild(option);
                     });
