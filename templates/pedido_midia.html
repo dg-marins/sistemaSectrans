@@ -1,37 +1,72 @@
 {% extends 'base.html' %}
+
 {% load static %}
+
+{% block title %}Gravação de Mídia - Sectrans{% endblock %}
+
 {% block content %}
-
-<main class="principal">
-    <div class="principal_conteudo_gravacao">
-        <h2>Gravação de Mídia</h2><br>
-        <label class="principal_conteudo_gravacao_labbels" for="empresas">Selecione uma empresa:</label>
-        <select class="principal_conteudo_gravacao_selects" id="empresas" onchange="listarCarros(this.value)">
-            <option value="" disabled selected>Selecione Empresa</option>
-            {% for empresa in empresas %}
-                <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
-            {% endfor %}
-        </select><br>
-
-        <label class="principal_conteudo_gravacao_labbels" for="carros">Selecione um carro:</label>
-        <select class="principal_conteudo_gravacao_selects" id="carros" onchange="listarModelos()" disabled>
-            <option value="" disabled selected>Selecione carro</option>
-            {% for carro in carros %}
-                <option value="{{ carro.id }}">{{ carro.nome }}</option>
-            {% endfor %}
-        </select><br>
-
-        <label class="principal_conteudo_gravacao_labbels" for="modelo_equipamento">Modelo de Equipamento:</label>
-        <select class="principal_conteudo_gravacao_selects" id="modelo_equipamento" disabled>
-            <option value="">Selecione um modelo</option>
-            {% for modelo in modelos %}
-                <option value="{{ modelo.id }}">{{ modelo.modelo }}</option>
-            {% endfor %}
-        </select><br>
-
-        <button class="principal_conteudo_gravacao_botao" onclick="solicitarGravacao()">Solicitar Gravação</button>
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Gravação de Mídia</h2>
     </div>
-</main>
+    
+    <div class="card-body">
+        <form id="formGravacao" class="form">
+            <div class="form-group">
+                <label class="form-label" for="empresas">Empresa</label>
+                <select class="form-control" id="empresas" onchange="listarCarros(this.value)" required>
+                    <option value="" disabled selected>Selecione uma empresa</option>
+                    {% for empresa in empresas %}
+                        <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
+            <div class="form-group">
+                <label class="form-label" for="carros">Carro</label>
+                <select class="form-control" id="carros" onchange="listarModelos()" disabled required>
+                    <option value="" disabled selected>Selecione um carro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="modelo_equipamento">Modelo de Equipamento</label>
+                <select class="form-control" id="modelo_equipamento" disabled required>
+                    <option value="" disabled selected>Selecione um modelo</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="solicitarGravacao()">
+                    <i class="fas fa-save"></i> Solicitar Gravação
+                </button>
+                <button type="reset" class="btn btn-secondary">
+                    <i class="fas fa-undo"></i> Limpar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .form-actions button {
+        min-width: 150px;
+    }
+
+    .btn i {
+        margin-right: 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
 <script src="{% static 'scripts/pedido_midia.js' %}"></script>
 {% endblock %}
