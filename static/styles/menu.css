@@ -1,0 +1,31 @@
+:root {
+    --cor-principal: #f34d25;
+    --cor-secundaria: #c5c5c5;
+    --cor-terciaria: #e9e9e9;
+    --cor-hover-menu: #495050;
+}
+.menu-container {
+    background-color: var(--cor-terciaria);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+.menu-container h1 {
+    color: var(--cor-hover-menu);
+    margin-bottom: 20px;
+}
+.menu-item {
+    display: block;
+    color:var(--cor-terciaria);
+    text-decoration: none;
+    background-color: var(--cor-principal);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.menu-item:hover {
+    background-color: #777;
+}
