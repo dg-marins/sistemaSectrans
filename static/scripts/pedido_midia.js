@@ -7,7 +7,6 @@ function listarModelos(){
     fetch('/listar_modelos/')
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Para verificar os dados no console
             if(data.length > 0){
                 modelosSelect.disabled = false;
                 data.forEach(modelo =>{
