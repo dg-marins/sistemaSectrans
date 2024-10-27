@@ -20,18 +20,6 @@ function atualizarSelect(selectId, listItens){
     });
 }
 
-function listarCarros(empresaId) {
-    if (empresaId) {
-        fetch(`/empresas/${empresaId}/carros/`)
-            .then(response => response.json())
-            .then(data => {
-                // Atualize o select de carros com os dados recebidos
-                atualizarSelect("carros", data.carros);
-            })
-            .catch(error => console.error('Erro ao listar carros:', error));
-    }
-}
-
 function modifyDisplay(ids, exibition){
     for (var i = 0; i < ids.length; i++) {
         var element = document.getElementById(ids[i]);
@@ -55,26 +43,6 @@ function atualizarParametrosGravacao(modeloEquipamento){
     }
 }
 
-// Executar a função listarEmpresas() quando o DOM estiver pronto
 document.addEventListener("DOMContentLoaded", function() {
-        // Obtendo o nome do arquivo HTML atual
-        var currentPage = window.location.pathname.split("/").pop();
-
-        // Verificando se a página atual é gravacao.html
-        if (currentPage === "gravacao.html") {
-            listarEmpresas();
-        }
+    listarEmpresas(); // Carrega as empresas ao inicializar a página
 });
-
-function solicitarGravacao() {
-    // Obter os valores dos selects
-    var empresa = document.getElementById("empresas").value;
-    var carro = document.getElementById("carros").value;
-    var modeloEquipamento = document.getElementById("modelo_equipamento").value;
-    var dvr = document.getElementById("dvr_select").value;
-    var cameras = document.getElementById("cameras_select").value;
-
-    // Aqui você pode enviar os valores para onde quiser, como uma API ou fazer alguma operação com eles
-    // Por exemplo, você pode exibir os valores em um alerta
-    alert("Empresa: " + empresa + "\nCarro: " + carro + "\nModelo de Equipamento: " + modeloEquipamento + "\nDVR: " + dvr + "\nCâmeras: " + cameras);
-}
