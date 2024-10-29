@@ -147,6 +147,6 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_BEAT_SCHEDULE = {
     'atualizar_status_vpn_task': {
         'task': 'sectrans.tasks.atualizar_status_vpn',
-        'schedule': 10.0,  # Executa a cada 10 seg (em segundos)
+        'schedule': 30.0,  # Executa a cada 30 seg (em segundos)
     },
 }
