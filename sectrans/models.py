@@ -16,7 +16,10 @@ class Empresa(models.Model):
     vpn = models.CharField(max_length=100, default='')
     data_cadastro = models.DateTimeField(default=datetime.now, blank=False)
     ativa = models.BooleanField(default=True)
+    vpn_status = models.BooleanField(default=False)
+    vpn_last_checked = models.DateTimeField(auto_now=True)
 
+    
     def __str__(self):
         return self.nome
 
