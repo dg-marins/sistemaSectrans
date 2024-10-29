@@ -27,7 +27,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: white;
+    background-color: var(--cor-secundaria);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease;
@@ -49,9 +49,9 @@
     color: var(--cor-hover-menu);
 }
 
-.empresa_razao_social {
+.empresa_vpn {
     font-size: 14px;
-    color: var(--cor-secundaria);
+    color: var(--cor-hover-menu);
 }
 
 .empresa_status {
