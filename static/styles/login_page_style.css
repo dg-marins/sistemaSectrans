@@ -1,9 +1,4 @@
-:root {
-    --cor-principal: #f34d25;
-    --cor-secundaria: #c5c5c5;
-    --cor-terciaria: #e9e9e9;
-    --cor-hover-menu: #495050;
-}
+@import url('variaveis.css');
 
 .login-container {
 	min-height: 100vh;

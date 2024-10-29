@@ -27,8 +27,8 @@ def pedido_view(request):
     return render(request, 'pedido_midia.html')
 
 def listar_empresas(request):
-    empresas = Empresa.objects.all().order_by('nome').values('id', 'nome')
-    return JsonResponse(list(empresas), safe=False)
+    empresas = Empresa.objects.all().order_by('nome')
+    return render(request, 'empresas.html', {empresas: empresas})
 
 def listar_modelos(request):
     modelos = Modelo_Equipamento.objects.all().order_by('modelo').values('id', 'modelo')

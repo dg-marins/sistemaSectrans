@@ -1,0 +1,10 @@
+:root {
+    --cor-principal: #f34d25;
+    --cor-secundaria: #f5f5f5;
+    --cor-terciaria: #ffffff;
+    --cor-hover-menu: #495050;
+    --cor-texto: #333333;
+    --sombra-padrao: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --transicao-padrao: all 0.3s ease;
+    --borda-radius: 10px;
+}
