@@ -27,7 +27,7 @@ def pedido_view(request):
 
 def empresas_view(request):
     empresas = Empresa.objects.all().order_by('nome')
-    return render(request, 'empresas.html', {empresas: empresas})
+    return render(request, 'empresas.html', {'empresas': empresas})
 
 def listar_empresas(request):
     empresas = Empresa.objects.all().order_by('nome').values('id', 'nome', 'vpn', 'vpn_status')
