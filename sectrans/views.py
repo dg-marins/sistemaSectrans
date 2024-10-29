@@ -13,7 +13,6 @@ def login_view(request):
         
         if user is not None:
             login(request, user)
-            messages.success(request, 'Login realizado com sucesso!')
             return redirect('menu')  # Redirecione para a página desejada após login bem-sucedido
         else:
             messages.error(request, 'Usuário ou senha incorretos. Tente novamente.')
@@ -26,9 +25,13 @@ def menu(request):
 def pedido_view(request):
     return render(request, 'pedido_midia.html')
 
-def listar_empresas(request):
+def empresas_view(request):
     empresas = Empresa.objects.all().order_by('nome')
     return render(request, 'empresas.html', {empresas: empresas})
+
+def listar_empresas(request):
+    empresas = Empresa.objects.all().order_by('nome').values('id', 'nome', 'vpn', 'vpn_status')
+    return JsonResponse(list(empresas), safe=False)
 
 def listar_modelos(request):
     modelos = Modelo_Equipamento.objects.all().order_by('modelo').values('id', 'modelo')
