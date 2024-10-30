@@ -5,8 +5,31 @@
 
 {% block content %}
 <div class="full-page-card">
-    
     <div class="card-body">
+        <!-- Seletores -->
+        <div class="selectors">
+            <div class="selector">
+                <label for="empresa">Empresa:</label>
+                <select id="empresa">
+                    <option value="">Selecione a empresa</option>
+                </select>
+            </div>
+            <div class="selector">
+                <label for="camera">Câmera:</label>
+                <select id="camera">
+                    <option value="">Selecione a câmera</option>
+                </select>
+            </div>
+            <div class="selector">
+                <label for="data-inicio">De:</label>
+                <input type="date" id="data-inicio">
+            </div>
+            <div class="selector">
+                <label for="data-fim">Até:</label>
+                <input type="date" id="data-fim">
+            </div>
+        </div>
+
         <!-- Status Cards -->
         <div class="status-cards">
             <div class="status-card card-success">
@@ -89,15 +112,45 @@
     .full-page-card {
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 130px); /* Ajuste para considerar header e footer */
+        height: calc(100vh - 130px);
         margin: 0;
         background-color: var(--cor-terciaria);
         border-radius: 0;
     }
 
+    /* Estilos para os seletores */
+    .selectors {
+        display: flex;
+        justify-content: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+
+    .selector {
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+    }
+
+    .selector label {
+        margin-bottom: 0.25rem;
+        font-weight: bold;
+        color: var(--cor-principal);
+        font-size: 0.9rem;
+    }
+
+    .selector select,
+    .selector input {
+        padding: 0.4rem;
+        border: 1px solid var(--cor-secundaria);
+        border-radius: var(--borda-radius);
+        font-size: 0.9rem;
+    }
+
     .card-body {
         flex: 1;
-        padding: 1.5rem;
+        padding: 1rem;
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -106,12 +159,12 @@
     .status-cards {
         display: flex;
         gap: 1rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .status-card {
         flex: 1;
-        padding: 1.25rem;
+        padding: 0.75rem;
         border-radius: var(--borda-radius);
         color: var(--cor-terciaria);
         text-align: center;
@@ -122,18 +175,18 @@
     .card-info { background-color: #2196f3; }
 
     .status-card .icon {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
     }
 
     .status-card .percentage {
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         font-weight: bold;
         margin-bottom: 0.25rem;
     }
 
     .status-card .label {
-        font-size: 0.875rem;
+        font-size: 0.75rem;
         font-weight: 500;
     }
 
@@ -253,12 +306,20 @@
 
     /* Responsividade */
     @media (max-width: 768px) {
+        .selectors {
+            flex-wrap: wrap;
+        }
+
+        .selector {
+            flex-basis: calc(50% - 0.5rem);
+        }
+
         .status-cards {
-            flex-direction: column;
+            flex-wrap: wrap;
         }
 
         .status-card {
-            margin-bottom: 1rem;
+            flex-basis: calc(50% - 0.5rem);
         }
     }
 </style>
