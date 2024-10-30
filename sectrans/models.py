@@ -7,19 +7,35 @@ class Modelo_Equipamento(models.Model):
 
     modelo = models.CharField(max_length=100, null=False, blank=False)
 
+    class Meta:
+        verbose_name = 'Modelo Equipamento'
+        verbose_name_plural = 'Modelos Equipamento'
+
     def __str__(self):
         return self.modelo
 
 class Empresa(models.Model):
     nome = models.CharField(max_length=150, null=False, blank=False)
     razao_social = models.CharField(max_length=255, null=False, blank=False)
-    vpn = models.CharField(max_length=100, default='')
     data_cadastro = models.DateTimeField(default=datetime.now, blank=False)
     ativa = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nome
+
+class Servidor(models.Model):
+    nome = models.CharField(max_length=150, null=False, blank=False)
+    vpn = models.CharField(max_length=100, null=True, blank=True)
+    ip_publico = models.CharField(max_length=100, null=True, blank=True)
+    ativo = models.BooleanField(default=True)
+    empresa = models.ForeignKey(Empresa, on_delete=models.SET_NULL, null=True, blank=False)
     vpn_status = models.BooleanField(default=False)
     vpn_last_checked = models.DateTimeField(auto_now=True)
 
-    
+    class Meta:
+        verbose_name = 'Servidor'
+        verbose_name_plural = 'Servidores'
+
     def __str__(self):
         return self.nome
 

@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" href="">
 <main class="principal">
     <div class="principal_conteudo_empresas">
         <h2>Lista de Empresas</h2>
@@ -11,14 +10,30 @@
             <div class="empresa_item">
                 <div class="empresa_info">
                     <span class="empresa_nome">{{ empresa.nome }}</span>
-                    <span class="empresa_vpn">{{ empresa.vpn }}</span>
                 </div>
-                <div class="empresa_status {% if empresa.vpn_status %}online{% else %}offline{% endif %}"></div>
+                
+                <!-- Lista de servidores da empresa -->
+                <div class="servidores_lista">
+                    <div class="servidores_status">
+                        {% for servidor in empresa.servidor_set.all %}
+                        <div class="servidor_item">
+                            <!-- Bolinha de status do servidor -->
+                            <div class="empresa_status {% if servidor.vpn_status %}online{% else %}offline{% endif %}">
+                                <span class="servidor_nome">{{ servidor.nome }}</span>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>Sem servidores cadastrados</p>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </main>
+
+
 
 {% endblock %}
 

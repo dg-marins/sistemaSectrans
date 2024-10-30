@@ -5,7 +5,7 @@ from .models import *
 admin.site.register(Modelo_Equipamento)
 
 class ListandoEmpresa(admin.ModelAdmin):
-    list_display = ("nome", "razao_social", "vpn", "ativa",)
+    list_display = ("nome", "razao_social", "ativa",)
     list_display_links = ("nome", "razao_social",)
     list_editable = ("ativa",)
 
@@ -38,3 +38,7 @@ class CarrosAdmin(admin.ModelAdmin):
     
 admin.site.register(Carro, CarrosAdmin)
 
+class ServidoresAdmin(admin.ModelAdmin):
+    list_display = ("nome", "vpn", "ip_publico", "empresa",  "ativo")
+
+admin.site.register(Servidor, ServidoresAdmin)
