@@ -1,18 +1,19 @@
 from celery import shared_task
-from .models import Empresa
+from .models import Empresa, Servidor
 from django.utils import timezone
 import subprocess, os
 
 @shared_task
 def atualizar_status_vpn():
-    empresas = Empresa.objects.all()  # Filtra apenas empresas ativas
-    for empresa in empresas:
-        vpn_ip = empresa.vpn
+    servidores = Servidor.objects.all()
+
+    for servidor in servidores:
+        vpn_ip = servidor.vpn
         vpn_ativa = is_ip_online(vpn_ip)
 
-        empresa.vpn_status = vpn_ativa
-        empresa.vpn_last_checked = timezone.now()
-        empresa.save()
+        servidor.vpn_status = vpn_ativa
+        servidor.vpn_last_checked = timezone.now()
+        servidor.save()
 
 def is_ip_online(ip):
     try:

@@ -30,7 +30,7 @@ def empresas_view(request):
     return render(request, 'empresas.html', {'empresas': empresas})
 
 def listar_empresas(request):
-    empresas = Empresa.objects.all().order_by('nome').values('id', 'nome', 'vpn', 'vpn_status')
+    empresas = Empresa.objects.all().order_by('nome').values('id', 'nome')
     return JsonResponse(list(empresas), safe=False)
 
 def listar_modelos(request):
