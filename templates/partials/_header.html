@@ -1,16 +1,23 @@
 {% load static %}
 
-<div class="wrapper">
-    <header class="header">
+<header class="header">
+    <div class="header_content">
         <div class="header_logo_content">
-            <img src="{% static 'assets/logo_sectrans.png' %}" alt="logo_Sectrans">
+            <a href="{% url 'menu' %}">
+                <img src="{% static 'assets/logo_sectrans.png' %}" alt="Logo Sectrans">
+            </a>
         </div>
-        <div class="header_page_top">
+        <nav>
             <ul class="header_page_top_navbar">
-                <li class="header_page_top_navbar_item"><a href="#">Listar</a></li>
-                <li class="header_page_top_navbar_item"><a href="#">Adicionar</a></li>
-                <li class="header_page_top_navbar_item"><a href="#">Excluir</a></li>
-                <li class="header_page_top_navbar_item"><a href="#">Listar</a></li>
+                <li class="header_page_top_navbar_item"><a href="{% url 'pedido_view' %}">Pedidos</a></li>
+                <li class="header_page_top_navbar_item"><a href="{% url 'empresas_view' %}">Empresas</a></li>
+                <li class="header_page_top_navbar_item"><a href="#">Relatórios</a></li>
+                <li class="header_page_top_navbar_item">
+                    <a href="{% url 'logout' %}" title="Sair">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </a>
+                </li>
             </ul>
-        </div>
-    </header>
+        </nav>
+    </div>
+</header>

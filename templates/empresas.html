@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="">
+<main class="principal">
+    <div class="principal_conteudo_empresas">
+        <h2>Lista de Empresas</h2>
+        <div class="empresas_lista">
+            {% for empresa in empresas %}
+            <div class="empresa_item">
+                <div class="empresa_info">
+                    <span class="empresa_nome">{{ empresa.nome }}</span>
+                    <span class="empresa_vpn">{{ empresa.vpn }}</span>
+                </div>
+                <div class="empresa_status {% if empresa.vpn_status %}online{% else %}offline{% endif %}"></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/empresas.css' %}">
+{% endblock %}

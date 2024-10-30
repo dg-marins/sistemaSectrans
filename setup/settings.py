@@ -139,3 +139,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Login configuration
 LOGIN_REDIRECT_URL = 'empresas/'  # ou outra URL para onde você deseja redirecionar após o login
 LOGOUT_REDIRECT_URL = 'login/'  # URL para redirecionar após logout
+
+# Celery
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # ou outra URL de broker como RabbitMQ
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+CELERY_BEAT_SCHEDULE = {
+    'atualizar_status_vpn_task': {
+        'task': 'sectrans.tasks.atualizar_status_vpn',
+        'schedule': 30.0,  # Executa a cada 30 seg (em segundos)
+    },
+}

@@ -74,3 +74,7 @@ function solicitarGravacao() {
 
     alert("Empresa: " + empresa + "\nCarro: " + carro + "\nModelo de Equipamento: " + modeloEquipamento);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    listarEmpresas(); // Carrega as empresas ao inicializar a página
+});

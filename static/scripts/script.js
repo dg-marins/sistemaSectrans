@@ -42,7 +42,3 @@ function atualizarParametrosGravacao(modeloEquipamento){
         modifyDisplay(IdDisplayCameras, "none")
     }
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    listarEmpresas(); // Carrega as empresas ao inicializar a página
-});
