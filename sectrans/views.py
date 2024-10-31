@@ -30,7 +30,8 @@ def empresas_view(request):
     return render(request, 'empresas.html', {'empresas': empresas})
 
 def relatorio_cores_view(request):
-    return render(request, 'relatorio_cores.html')
+    empresas = Empresa.objects.all().order_by('nome')
+    return render(request, 'relatorio_cores.html', {'empresas': empresas})
 
 def listar_empresas(request):
     empresas = Empresa.objects.all().order_by('nome').values('id', 'nome')
