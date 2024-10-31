@@ -42,3 +42,8 @@ class ServidoresAdmin(admin.ModelAdmin):
     list_display = ("nome", "vpn", "ip_publico", "empresa",  "ativo")
 
 admin.site.register(Servidor, ServidoresAdmin)
+
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ("video_file", "carro", "empresa", "data_video", "servidor", "tamanho", "duracao", "path_arquivo")
+
+admin.site.register(Video, VideoAdmin)
