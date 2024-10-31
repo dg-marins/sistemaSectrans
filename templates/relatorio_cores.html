@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Relatório de Câmeras - Sectrans{% endblock %}
+{% block title %}Relatório de Descarregamento{% endblock %}
 
 {% block content %}
 <div class="full-page-card">
@@ -20,7 +20,11 @@
             <div class="selector">
                 <label for="camera">Câmera:</label>
                 <select id="camera">
-                    <option value="">Selecione a câmera</option>
+                    <option value="" disabled selected  >Selecione a câmera</option>
+                    <option value="1">Câmera 1</option>
+                    <option value="2">Câmera 2</option>
+                    <option value="3">Câmera 3</option>
+                    <option value="4">Câmera 4</option>
                 </select>
             </div>
             <div class="selector">
