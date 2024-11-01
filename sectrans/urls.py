@@ -11,6 +11,7 @@ urlpatterns = [
      path('pedido/', views_pages.pedido_view, name='pedido_view'),
      path('empresas_view/', views_pages.empresas_view, name='empresas_view'),
      path('relatorio_cores_view/', views_pages.relatorio_cores_view, name='relatorio_cores_view'),
+     path('mapa/', views_pages.mapa_view, name='mapa_view'),
      path('logout/', views_pages.login_view, name='logout'),
 
      #Rest

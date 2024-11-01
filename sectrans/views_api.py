@@ -33,3 +33,12 @@ class ListarCarrosByEmpresaId(APIView):
     def get(self, request, empresa_id):
         carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome')
         return JsonResponse(list(carros), safe=False)
+
+def get_rota(request, carro_id, data):
+    # Aqui você buscaria os dados da rota no banco de dados
+    # Este é apenas um exemplo, você precisará adaptar para sua estrutura de dados
+    rota = Rota.objects.filter(carro_id=carro_id, data=data).order_by('timestamp')
+    
+    rota_data = [{'lat': ponto.latitude, 'lng': ponto.longitude} for ponto in rota]
+    
+    return JsonResponse(rota_data, safe=False)
