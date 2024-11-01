@@ -11,31 +11,37 @@
     
     <div class="card-body">
         <form id="formMapa" class="form">
-            <div class="form-group">
-                <label class="form-label" for="carros">Carro</label>
-                <select class="form-control" id="carros" required>
-                    <option value="" disabled selected>Selecione um carro</option>
-                    {% for carro in carros %}
-                        <option value="{{ carro.id }}">{{ carro.nome }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="form-label" for="carros">Carro</label>
+                    <select class="form-control" id="carros" required>
+                        <option value="" disabled selected>Selecione um carro</option>
+                        {% for carro in carros %}
+                            <option value="{{ carro.id }}">{{ carro.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label class="form-label" for="data">Data</label>
-                <input type="date" class="form-control" id="data" required>
-            </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="data">Data</label>
+                    <input type="date" class="form-control" id="data" required>
+                </div>
 
-            <div class="form-actions">
-                <button type="button" class="btn btn-primary" onclick="exibirRota()">
-                    <i class="fas fa-map-marked-alt"></i> Exibir Rota
-                </button>
+                <div class="form-group col-md-2 d-flex align-items-end">
+                    <button type="button" class="btn btn-primary btn-block" onclick="exibirRota()">
+                        <i class="fas fa-map-marked-alt"></i> Exibir Rota
+                    </button>
+                </div>
             </div>
         </form>
 
         <div id="map" style="height: 500px; margin-top: 20px;"></div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/mapa.css' %}">
 {% endblock %}
 
 {% block extra_js %}
