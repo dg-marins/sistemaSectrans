@@ -32,15 +32,3 @@ def empresas_view(request):
 def relatorio_cores_view(request):
     empresas = Empresa.objects.all().order_by('nome')
     return render(request, 'relatorio_cores.html', {'empresas': empresas})
-
-def listar_empresas(request):
-    empresas = Empresa.objects.all().order_by('nome').values('id', 'nome')
-    return JsonResponse(list(empresas), safe=False)
-
-def listar_modelos(request):
-    modelos = Modelo_Equipamento.objects.all().order_by('modelo').values('id', 'modelo')
-    return JsonResponse(list(modelos), safe=False)
-    
-def listar_carros(request, empresa_id):
-    carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome')
-    return JsonResponse(list(carros), safe=False)
