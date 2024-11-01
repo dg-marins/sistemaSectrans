@@ -7,19 +7,35 @@ class Modelo_Equipamento(models.Model):
 
     modelo = models.CharField(max_length=100, null=False, blank=False)
 
+    class Meta:
+        verbose_name = 'Modelo Equipamento'
+        verbose_name_plural = 'Modelos Equipamento'
+
     def __str__(self):
         return self.modelo
 
 class Empresa(models.Model):
     nome = models.CharField(max_length=150, null=False, blank=False)
     razao_social = models.CharField(max_length=255, null=False, blank=False)
-    vpn = models.CharField(max_length=100, default='')
     data_cadastro = models.DateTimeField(default=datetime.now, blank=False)
     ativa = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nome
+
+class Servidor(models.Model):
+    nome = models.CharField(max_length=150, null=False, blank=False)
+    vpn = models.CharField(max_length=100, null=True, blank=True)
+    ip_publico = models.CharField(max_length=100, null=True, blank=True)
+    ativo = models.BooleanField(default=True)
+    empresa = models.ForeignKey(Empresa, on_delete=models.SET_NULL, null=True, blank=False)
     vpn_status = models.BooleanField(default=False)
     vpn_last_checked = models.DateTimeField(auto_now=True)
 
-    
+    class Meta:
+        verbose_name = 'Servidor'
+        verbose_name_plural = 'Servidores'
+
     def __str__(self):
         return self.nome
 
@@ -90,3 +106,24 @@ class Carro(models.Model):
             if next_ip not in utilizados and next_ip != ip_servidor:
                 return next_ip
         raise ValidationError("Não há IPs disponíveis na rede.")
+    
+class Video(models.Model):
+    video_file = models.CharField(max_length=100, null=True, blank=False)
+    carro = models.ForeignKey(Carro, on_delete=models.CASCADE, null=False, blank=False)
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, null=False, blank=False)
+    data_video = models.DateField(null=False, blank=False)
+    hora_video = models.TimeField(null=False, blank=False)
+    created_at = models.DateTimeField(default=datetime.now, blank=False)
+    servidor = models.ForeignKey(Servidor, on_delete=models.SET_NULL, null=True, blank=True)
+    erased = models.BooleanField(default=False)
+    tamanho = models.IntegerField(null=True, blank=True, help_text="Tamanho do vídeo em MB")
+    duracao = models.DurationField(null=True, blank=True)
+    path_arquivo = models.CharField(max_length=500, null=True, blank=True)
+
+    def __str__(self):
+        return self.carro.nome
+
+    class Meta:
+        verbose_name = 'Vídeo'
+        verbose_name_plural = 'Vídeos'
+    
