@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sectrans.apps.SectransConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
