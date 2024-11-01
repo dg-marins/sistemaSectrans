@@ -3,7 +3,7 @@ function listarEmpresas(){
 
     empresaSelect.innerHTML = '<option value="" disabled selected>Selecione Empresa</option>';
 
-    fetch('/listar_empresas/')
+    fetch('/api/empresas/')
         .then(response => response.json())
         .then(data => {
             if(data.length > 0){
@@ -24,7 +24,7 @@ function listarModelos(){
     modelosSelect.innerHTML = '<option value="" disabled selected>Selecione modelo</option>';
     modelosSelect.disabled = true;  
 
-    fetch('/listar_modelos/')
+    fetch('/api/list_equipament_models/')
         .then(response => response.json())
         .then(data => {
             if(data.length > 0){
@@ -48,7 +48,7 @@ function listarCarros(empresaId) {
     carrosSelect.disabled = true;
 
     if (empresaId) {
-        fetch(`/listar_carros/${empresaId}/`)
+        fetch(`/api/list_cars/${empresaId}/`)
             .then(response => response.json())
             .then(data => {
                 if (data.length > 0) {

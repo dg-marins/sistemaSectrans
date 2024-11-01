@@ -1,22 +1,23 @@
 from django.urls import path
-from . import views
+from . import views_pages
+from . import views_api
 
 urlpatterns = [
     
     #Views
-     path('', views.login_view, name='index'),
-     path('login/', views.login_view, name='login'),
-     path('menu/', views.menu, name='menu'),
-     path('pedido/', views.pedido_view, name='pedido_view'),
-     path('empresas_view/', views.empresas_view, name='empresas_view'),
-     path('relatorio_cores_view/', views.relatorio_cores_view, name='relatorio_cores_view'),
-     path('listar_empresas/', views.listar_empresas, name='listar_empresas'),
-     path('listar_carros/<int:empresa_id>/', views.listar_carros, name='listar_carros'),
-     path('listar_modelos/', views.listar_modelos, name='listar_modelos'),
-     path('logout/', views.login_view, name='logout'),
+     path('', views_pages.login_view, name='index'),
+     path('login/', views_pages.login_view, name='login'),
+     path('menu/', views_pages.menu, name='menu'),
+     path('pedido/', views_pages.pedido_view, name='pedido_view'),
+     path('empresas_view/', views_pages.empresas_view, name='empresas_view'),
+     path('relatorio_cores_view/', views_pages.relatorio_cores_view, name='relatorio_cores_view'),
+     path('logout/', views_pages.login_view, name='logout'),
 
      #Rest
-     path('videos/novo/', views.VideoCreateView.as_view(), name='video_create'),
+     path('api/videos/register/', views_api.VideoRegister.as_view(), name='video_register'),
+     path('api/empresas/', views_api.ListarEmpresas.as_view(), name='listar_empresas'),
+     path('api/list_cars/<int:empresa_id>/', views_api.ListarCarrosByEmpresaId.as_view(), name='listar_carros'),
+     path('api/list_equipament_models/', views_api.ListarModelosEquipamento.as_view(), name='listar_modelos'),
      # path('videos/', views.VideoListView.as_view(), name='video_list'),
 
 ]
