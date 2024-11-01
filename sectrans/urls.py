@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    
+    #Views
      path('', views.login_view, name='index'),
      path('login/', views.login_view, name='login'),
      path('menu/', views.menu, name='menu'),
@@ -12,4 +14,9 @@ urlpatterns = [
      path('listar_carros/<int:empresa_id>/', views.listar_carros, name='listar_carros'),
      path('listar_modelos/', views.listar_modelos, name='listar_modelos'),
      path('logout/', views.login_view, name='logout'),
+
+     #Rest
+     path('videos/novo/', views.VideoCreateView.as_view(), name='video_create'),
+     # path('videos/', views.VideoListView.as_view(), name='video_list'),
+
 ]
