@@ -5,6 +5,13 @@ from django.http import JsonResponse
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Video
+from .serializers import VideoSerializers
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -44,3 +51,17 @@ def listar_modelos(request):
 def listar_carros(request, empresa_id):
     carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome')
     return JsonResponse(list(carros), safe=False)
+
+class VideoCreateView(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = VideoSerializers(data=request.data)
+        if serializer.is_valid():
+            video = serializer.save()
+            return Response({
+                'message': 'Video salvo com sucesso',
+                'video_id': video.id
+            }, status=status.HTTP_201_CREATED)
+        return Response({
+            'message': "Video já cadastrado",
+            'error': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
