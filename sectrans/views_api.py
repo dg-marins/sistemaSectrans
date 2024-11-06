@@ -8,6 +8,19 @@ from django.http import JsonResponse
 from .models import Video, Carro, Empresa, Servidor  # Importe os modelos relacionados
 
 class VideoRegister(APIView):
+
+    def is_video_registred(self, video_file, channel, carro_id, data_video):
+
+        video_exists = Video.objects.filter(
+            video_file = video_file,
+            channel = channel,
+            carro_id = carro_id,
+            data_video = data_video
+        ).exists()
+
+        return video_exists
+        
+
     def post(self, request, *args, **kwargs):
         serializer = VideoRequestSerializer(data=request.data)
         
@@ -35,6 +48,16 @@ class VideoRegister(APIView):
             for video_data in serializer.validated_data['videos']:
                 video_serializer = VideoDataSerializer(data=video_data)
                 if video_serializer.is_valid():
+                    if self.is_video_registred(video_data['video_file'],
+                                        video_data['channel'],
+                                        carro_id,
+                                        video_data['data_video']):
+                        errors.append({
+                        'video_data': video_data,
+                        'errors': "Vídeo já registrado no banco de dados."
+                            })
+                        continue
+                    
                     # Cria uma nova instância de Video no banco de dados
                     video = Video.objects.create(
                         carro=carro,
