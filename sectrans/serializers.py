@@ -6,7 +6,7 @@ class VideoDataSerializer(serializers.Serializer):
     channel = serializers.IntegerField()
     data_video = serializers.DateField()
     hora_video = serializers.TimeField()
-    tamanho = serializers.IntegerField()
+    tamanho = serializers.FloatField()
     duracao = serializers.CharField(max_length=10)
     path_arquivo = serializers.CharField(max_length=255)
 

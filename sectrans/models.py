@@ -116,7 +116,7 @@ class Video(models.Model):
     created_at = models.DateTimeField(default=timezone.now, blank=False)
     servidor = models.ForeignKey(Servidor, on_delete=models.SET_NULL, null=True, blank=True)
     erased = models.BooleanField(default=False)
-    tamanho = models.IntegerField(null=True, blank=True, help_text="Tamanho do vídeo em KB")
+    tamanho = models.FloatField(null=True, blank=True, help_text="Tamanho do vídeo em KB")
     duracao = models.DurationField(null=True, blank=True, help_text="Duração do vídeo em segundos")
     path_arquivo = models.CharField(max_length=500, null=True, blank=True)
 
