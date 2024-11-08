@@ -19,6 +19,7 @@ urlpatterns = [
      path('api/empresas/', views_api.ListarEmpresas.as_view(), name='listar_empresas'),
      path('api/list_cars/<int:empresa_id>/', views_api.ListarCarrosByEmpresaId.as_view(), name='listar_carros'),
      path('api/list_equipament_models/', views_api.ListarModelosEquipamento.as_view(), name='listar_modelos'),
+     path('api/list/channels/<int:empresa_id>', views_api.ListarCamsByEmpresaId.as_view(), name='listar_cameras'),
      # path('videos/', views.VideoListView.as_view(), name='video_list'),
 
 ]

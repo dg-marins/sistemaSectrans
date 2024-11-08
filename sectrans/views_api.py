@@ -1,9 +1,11 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Video, Empresa, Modelo_Equipamento, Carro
 from .serializers import VideoDataSerializer, VideoRequestSerializer
 from django.http import JsonResponse
+from django.db.models import Max
 
 from .models import Video, Carro, Empresa, Servidor  # Importe os modelos relacionados
 
@@ -108,11 +110,12 @@ class ListarCarrosByEmpresaId(APIView):
         carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome')
         return JsonResponse(list(carros), safe=False)
 
-def get_rota(request, carro_id, data):
-    # Aqui você buscaria os dados da rota no banco de dados
-    # Este é apenas um exemplo, você precisará adaptar para sua estrutura de dados
-    rota = Rota.objects.filter(carro_id=carro_id, data=data).order_by('timestamp')
+class ListarCamsByEmpresaId(APIView):
+    def get(self, request, empresa_id):
+        empresa = get_object_or_404(Empresa, id=empresa_id)
     
-    rota_data = [{'lat': ponto.latitude, 'lng': ponto.longitude} for ponto in rota]
-    
-    return JsonResponse(rota_data, safe=False)
+        # Filtra os vídeos pela empresa e calcula o máximo de channel
+        max_channel = Video.objects.filter(empresa=empresa).aggregate(Max('channel'))['channel__max']
+        
+        # Retorna o valor em JSON
+        return JsonResponse({'empresa_id': empresa_id, 'max_channel': max_channel}) 

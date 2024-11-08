@@ -1,3 +1,5 @@
+@import url('variaveis.css');
+
 .form-row {
     display: flex;
     flex-wrap: wrap;
