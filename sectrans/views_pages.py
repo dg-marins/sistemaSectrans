@@ -32,3 +32,7 @@ def empresas_view(request):
 def relatorio_cores_view(request):
     empresas = Empresa.objects.all().order_by('nome')
     return render(request, 'relatorio_cores.html', {'empresas': empresas})
+
+def mapa_view(request):
+    carros = Carro.objects.all()
+    return render(request, 'mapa.html', {'carros': carros})

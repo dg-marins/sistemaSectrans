@@ -44,6 +44,6 @@ class ServidoresAdmin(admin.ModelAdmin):
 admin.site.register(Servidor, ServidoresAdmin)
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ("video_file", "carro", "empresa", "data_video", "servidor", "tamanho", "duracao", "path_arquivo")
+    list_display = ("video_file", "carro", "channel","empresa", "data_video", "servidor", "tamanho", "duracao", "path_arquivo")
 
 admin.site.register(Video, VideoAdmin)
