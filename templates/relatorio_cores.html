@@ -10,7 +10,7 @@
         <div class="selectors">
             <div class="selector">
                 <label for="empresa">Empresa:</label>
-                <select id="empresa" onchange="list_channels_by_company_id(this.value)">
+                <select id="empresa">
                     <option value="" disabled selected >Selecione a empresa</option>
                     {% for empresa in empresas %}
                         <option value="{{ empresa.id }}">{{ empresa.nome }}</option>

@@ -200,6 +200,11 @@
     white-space: nowrap;
 }
 
+.invalid {
+    border-color: red;
+    background-color: #f8d7da;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .selectors {
