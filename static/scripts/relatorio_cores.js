@@ -159,10 +159,15 @@ class RelatorioCores {
                     const filesCell = carRow.insertCell();
                     const count = arquivosPorData[date] || 0;
     
-                    if (count < 200) {
+                    if (count <= 0) {
                         filesCell.classList.add("red-cell");
-                        filesCell.textContent = "x";
-                    } else {
+                        filesCell.innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
+                    } 
+                    else if(count <= 350){
+                        filesCell.classList.add("yellow-cell");
+                        filesCell.textContent = count;
+                    }
+                    else {
                         filesCell.classList.add("green-cell");
                         filesCell.textContent = count;
                     }

@@ -62,34 +62,15 @@
             <table class="table" id="relatorioCoresTabela" >
                 <thead>
                     <tr>
-                        <th>Carro</th>
-                        <th>Modelo</th>
-                        <th>2024-10-31</th>
-                        <th>2024-10-30</th>
-                        <th>2024-10-29</th>
-                        <th>2024-10-28</th>
-                        <th>2024-10-27</th>
-                        <th>2024-10-26</th>
-                        <th>2024-10-25</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Linhas de dados -->
-                    {% for i in "123456789"|make_list %}
                     <tr>
-                        <td><i class="fas fa-linux"></i> C1250{{i}}</td>
-                        <td>3204-W</td>
-                        <td class="{% if forloop.counter < 200 %}red-cell{% else %}green-cell{% endif %}">
-                            {% if forloop.counter < 200 %}x{% else %}{{forloop.counter}}{% endif %}
-                        </td>
-                        <td class="{% if 821 < 200 %}red-cell{% else %}green-cell{% endif %}">821</td>
-                        <td class="{% if 660 < 200 %}red-cell{% else %}green-cell{% endif %}">660</td>
-                        <td class="{% if 95 < 200 %}red-cell{% else %}green-cell{% endif %}">95</td>
-                        <td class="{% if 213 < 200 %}red-cell{% else %}green-cell{% endif %}">213</td>
-                        <td class="{% if 587 < 200 %}red-cell{% else %}green-cell{% endif %}">587</td>
-                        <td class="{% if 761 < 200 %}red-cell{% else %}green-cell{% endif %}">761</td>
+                        
                     </tr>
-                    {% endfor %}
+                    
                 </tbody>
             </table>
         </div>
