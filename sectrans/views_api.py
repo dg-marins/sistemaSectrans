@@ -6,6 +6,10 @@ from .models import Video, Empresa, Modelo_Equipamento, Carro
 from .serializers import VideoDataSerializer, VideoRequestSerializer
 from django.http import JsonResponse
 from django.db.models import Max
+from datetime import datetime
+from collections import defaultdict
+from collections import defaultdict, Counter
+from itertools import groupby
 
 from .models import Video, Carro, Empresa, Servidor  # Importe os modelos relacionados
 
@@ -107,7 +111,7 @@ class ListarModelosEquipamento(APIView):
     
 class ListarCarrosByEmpresaId(APIView):
     def get(self, request, empresa_id):
-        carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome')
+        carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome', 'modelo')
         return JsonResponse(list(carros), safe=False)
 
 class ListarCamsByEmpresaId(APIView):
@@ -119,3 +123,42 @@ class ListarCamsByEmpresaId(APIView):
         
         # Retorna o valor em JSON
         return JsonResponse({'empresa_id': empresa_id, 'max_channel': max_channel}) 
+
+class ListarDadosRelatorioCores(APIView):
+    def post(self, request):
+        empresa_id = request.data.get('empresa_id')
+        channel = request.data.get('channel')
+        data_inicio = datetime.strptime(request.data.get('data_inicio'), "%Y-%m-%d")
+        data_fim = datetime.strptime(request.data.get('data_fim'), "%Y-%m-%d")
+
+        # Obter lista de carros com uma consulta para garantir o formato
+        carros = list(Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome', 'modelo'))
+
+        # Mapeamento de IDs dos carros para nomes e modelos
+        carro_info = {carro['id']: {"car": carro['nome'], "model": carro['modelo']} for carro in carros}
+
+        # Consulta única para obter todos os vídeos filtrados
+        videos = Video.objects.filter(
+            empresa_id=empresa_id,
+            channel=channel,
+            data_video__range=[data_inicio, data_fim]
+        ).values('carro_id', 'data_video')
+
+        # Contagem dos vídeos por carro e data
+        contagem_data = defaultdict(lambda: defaultdict(int))
+        for video in videos:
+            contagem_data[video['carro_id']][video['data_video'].strftime("%Y-%m-%d")] += 1
+
+        # Construção do JSON final
+        data = {
+            "data": [
+                {
+                    "car": carro_info[carro_id]["car"],
+                    "model": carro_info[carro_id]["model"],
+                    "dates": [{"date": date, "files": count} for date, count in dates.items()]
+                }
+                for carro_id, dates in contagem_data.items()
+            ]
+        }
+
+        return JsonResponse(data, safe=False)
