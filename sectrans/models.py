@@ -1,8 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 import re
-from datetime import datetime
-
+from django.utils import timezone
 class Modelo_Equipamento(models.Model):
 
     modelo = models.CharField(max_length=100, null=False, blank=False)
@@ -17,7 +16,7 @@ class Modelo_Equipamento(models.Model):
 class Empresa(models.Model):
     nome = models.CharField(max_length=150, null=False, blank=False)
     razao_social = models.CharField(max_length=255, null=False, blank=False)
-    data_cadastro = models.DateTimeField(default=datetime.now, blank=False)
+    data_cadastro = models.DateTimeField(default=timezone.now, blank=False)
     ativa = models.BooleanField(default=True)
 
     def __str__(self):
@@ -109,15 +108,16 @@ class Carro(models.Model):
     
 class Video(models.Model):
     video_file = models.CharField(max_length=100, null=True, blank=False)
+    channel = models.IntegerField(null=True, blank=False)
     carro = models.ForeignKey(Carro, on_delete=models.CASCADE, null=False, blank=False)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, null=False, blank=False)
     data_video = models.DateField(null=False, blank=False)
     hora_video = models.TimeField(null=False, blank=False)
-    created_at = models.DateTimeField(default=datetime.now, blank=False)
+    created_at = models.DateTimeField(default=timezone.now, blank=False)
     servidor = models.ForeignKey(Servidor, on_delete=models.SET_NULL, null=True, blank=True)
     erased = models.BooleanField(default=False)
-    tamanho = models.IntegerField(null=True, blank=True, help_text="Tamanho do vídeo em MB")
-    duracao = models.DurationField(null=True, blank=True)
+    tamanho = models.FloatField(null=True, blank=True, help_text="Tamanho do vídeo em KB")
+    duracao = models.DurationField(null=True, blank=True, help_text="Duração do vídeo em segundos")
     path_arquivo = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):
@@ -126,4 +126,8 @@ class Video(models.Model):
     class Meta:
         verbose_name = 'Vídeo'
         verbose_name_plural = 'Vídeos'
+
+        constraints = [
+            models.UniqueConstraint(fields=['video_file', 'channel', 'carro', 'data_video'], name='unique_file_per_channel_in_car_at_date'),
+        ]
     
