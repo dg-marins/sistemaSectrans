@@ -27,10 +27,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const dataInicio = document.getElementById("data-inicio");
     const dataFim = document.getElementById("data-fim");
 
-    // Define a data atual para limitar os campos
-    const today = new Date().toISOString().split("T")[0];
-    dataInicio.max = today;
-    dataFim.max = today;
+    // Define a data atual para data-inicio
+    const today = new Date();
+    const tenDaysAgo = new Date();
+    tenDaysAgo.setDate(today.getDate() - 10);
+
+    // Formata as datas no formato yyyy-mm-dd
+    dataInicio.value = today.toISOString().split("T")[0];
+    dataFim.value = tenDaysAgo.toISOString().split("T")[0];
+
+    // Define o limite máximo para as datas (a data atual)
+    dataInicio.max = today.toISOString().split("T")[0];
+    dataFim.max = today.toISOString().split("T")[0];
 
     // Atualiza o limite mínimo de data de fim com base na data de início
     dataInicio.addEventListener("change", function() {
