@@ -1,3 +1,8 @@
+function getCSRFToken() {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + 'csrftoken' + '\\s*=\\s*([^;]+)')?.pop() || '';
+    return cookieValue;
+}
+
 function list_channels_by_company_id(company_id){
     const cameraSelect = document.getElementById("camera");
 
@@ -6,7 +11,6 @@ function list_channels_by_company_id(company_id){
     fetch('/api/list/channels/' + company_id)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             if(data){
                 for (let x = 1; x <= data.max_channel; x++){
                     const option = document.createElement("option");
@@ -43,6 +47,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.querySelector(".btn.btn-primary").addEventListener("click", function() {
+    
+    
     const dataInicio = document.getElementById("data-inicio").value;
     const dataFim = document.getElementById("data-fim").value;
     const camera = document.getElementById("camera").value;
@@ -58,13 +64,15 @@ document.querySelector(".btn.btn-primary").addEventListener("click", function() 
     fetch("/api/list/relatorio_cores_info", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'X-CSRFToken': getCSRFToken()
         },
         body: JSON.stringify(requestData)
     })
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        return data;
         // Aqui você pode manipular a resposta recebida
     })
     .catch(error => console.error("Erro:", error));

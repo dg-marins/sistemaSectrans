@@ -100,17 +100,17 @@ class VideoRegister(APIView):
         }, status=status.HTTP_400_BAD_REQUEST)
     
 class ListarEmpresas(APIView):
-    def get(self):
+    def get(self, request):
         empresas = Empresa.objects.all().order_by('nome').values('id', 'nome')
         return JsonResponse(list(empresas), safe=False)
 
 class ListarModelosEquipamento(APIView):
-    def get(self):
+    def get(self, request):
         modelos = Modelo_Equipamento.objects.all().order_by('modelo').values('id', 'modelo')
         return JsonResponse(list(modelos), safe=False)
     
 class ListarCarrosByEmpresaId(APIView):
-    def get(self, empresa_id):
+    def get(self, request, empresa_id):
         carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome', 'modelo')
         return JsonResponse(list(carros), safe=False)
 
