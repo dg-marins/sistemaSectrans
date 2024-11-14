@@ -21,6 +21,7 @@ body {
     background-color: var(--cor-principal);
     padding: 1rem 2rem;
     box-shadow: var(--sombra-padrao);
+    border-radius: 0 0 var(--borda-radius) var(--borda-radius);
 }
 
 .header_content {
@@ -186,6 +187,7 @@ body {
     padding: 1rem;
     text-align: center;
     margin-top: auto;
+    border-radius: var(--borda-radius) var(--borda-radius) 0 0;
 }
 
 /* Utilities */

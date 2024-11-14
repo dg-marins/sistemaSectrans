@@ -8,7 +8,7 @@
 .principal_conteudo_empresas {
     background-color: var(--cor-terciaria);
     padding: 30px;
-    border-radius: 10px;
+    border-radius: var( --borda-radius);
     box-shadow: var(--sombra-padrao);
     max-width: 800px;
     width: 100%;

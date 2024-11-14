@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     height: calc(100vh - 130px);
-    margin: 0;
+    margin: 15px;
     background-color: var(--cor-terciaria);
     border-radius: 0;
 }
@@ -23,10 +23,16 @@
     padding: 0.5rem;
 }
 
+.selectors-button{
+    display: flex;
+    align-items: center;
+}
+
 .selector {
     display: flex;
     flex-direction: column;
     min-width: 200px;
+    align-items: center;
 }
 
 .selector label {
@@ -50,6 +56,8 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: var(--sombra-padrao);
+    border-radius: var(--borda-radius);
 }
 
 .status-cards {
