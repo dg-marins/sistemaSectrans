@@ -1,5 +1,9 @@
 @import url('variaveis.css');
 
+.principal{
+    display: flex;
+    justify-content: center;
+}
 /* Estilos para a página de empresas */
 .principal_conteudo_empresas {
     background-color: var(--cor-terciaria);
