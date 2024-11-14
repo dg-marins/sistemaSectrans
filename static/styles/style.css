@@ -32,11 +32,15 @@ body {
 }
 
 .header_logo_content img {
-    height: 50px;
-    background-color: var(--cor-terciaria);
+
+    height: 60px;
+	background-color: var(--cor-terciaria);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    /* height: 50px;
+    background-color: var(--cor-terciaria); */
     border-radius: var(--borda-radius);
-    padding: 5px;
-    box-shadow: var(--sombra-padrao);
+    /* box-shadow: var(--sombra-padrao); */
     transition: var(--transicao-padrao);
 }
 

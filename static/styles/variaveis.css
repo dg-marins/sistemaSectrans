@@ -4,7 +4,7 @@
     --cor-terciaria: #ffffff;
     --cor-hover-menu: #495050;
     --cor-texto: #333333;
-    --sombra-padrao: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --sombra-padrao: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     --transicao-padrao: all 0.3s ease;
-    --borda-radius: 10px;
+    --borda-radius: 15px;
 }
