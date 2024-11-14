@@ -7,6 +7,7 @@
                 <img src="{% static 'assets/logo_sectrans.png' %}" alt="Logo Sectrans">
             </a>
         </div>
+        {% if not request.path == '/login/' %}
         <nav>
             <ul class="header_page_top_navbar">
                 <li class="header_page_top_navbar_item"><a href="{% url 'pedido_view' %}">Pedidos</a></li>
@@ -20,5 +21,6 @@
                 </li>
             </ul>
         </nav>
+        {% endif %}
     </div>
 </header>

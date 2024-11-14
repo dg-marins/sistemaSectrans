@@ -1,10 +1,18 @@
 @import url('variaveis.css');
 
+.card-header{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
 .form-row {
     display: flex;
     flex-wrap: wrap;
     margin-right: -5px;
     margin-left: -5px;
+    justify-content: center;
+    align-content: center;
 }
 
 .form-group {

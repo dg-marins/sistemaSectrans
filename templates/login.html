@@ -1,18 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{% static 'styles/login_page_style.css' %}">
-</head>
+{% block content %}
 <body>
-    <div class="login-container">
-        <header class="login-header">
-            <img src="{% static 'assets/logo_sectrans.png' %}" alt="Logo Sectrans">
-        </header>
-
         <main class="login-content">
             <div class="login-box">
                 <h2>Acesso ao Sistema</h2>
@@ -47,7 +36,9 @@
             </div>
         </main>
 
-        {% include 'partials/_footer.html' %}
-    </div>
 </body>
-</html>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/login_page_style.css' %}">
+{% endblock %}
