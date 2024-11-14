@@ -106,12 +106,12 @@ class ListarEmpresas(APIView):
 
 class ListarModelosEquipamento(APIView):
     def get(self, request):
-        modelos = Modelo_Equipamento.objects.all().order_by('modelo').values('id', 'modelo')
+        modelos = Modelo_Equipamento.objects.all().order_by('modelo').select_related('modelo').values('id', 'modelo__modelo')
         return JsonResponse(list(modelos), safe=False)
     
 class ListarCarrosByEmpresaId(APIView):
     def get(self, request, empresa_id):
-        carros = Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome', 'modelo')
+        carros = Carro.objects.filter(empresa_id=empresa_id).select_related('modelo').values('id', 'nome', 'modelo')
         return JsonResponse(list(carros), safe=False)
 
 class ListarCamsByEmpresaId(APIView):
@@ -132,10 +132,12 @@ class ListarDadosRelatorioCores(APIView):
         data_fim = datetime.strptime(request.data.get('data_fim'), "%Y-%m-%d")
 
         # Obter lista de carros com uma consulta para garantir o formato
-        carros = list(Carro.objects.filter(empresa_id=empresa_id).values('id', 'nome', 'modelo'))
+        carros = list(Carro.objects.filter(empresa_id=empresa_id)
+                      .select_related('modelo')
+                      .values('id', 'nome', 'modelo__modelo'))
 
         # Mapeamento de IDs dos carros para nomes e modelos
-        carro_info = {carro['id']: {"car": carro['nome'], "model": carro['modelo']} for carro in carros}
+        carro_info = {carro['id']: {"car": carro['nome'], "model": carro['modelo__modelo']} for carro in carros}
 
         # Consulta única para obter todos os vídeos filtrados
         videos = Video.objects.filter(

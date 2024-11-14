@@ -90,6 +90,7 @@
 .table-responsive {
     flex: 1;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: var(--borda-radius);
     background-color: white;
     font-weight: bold;
@@ -128,9 +129,17 @@
     width: 100%;
     border-collapse: separate; /* Alterado de collapse para separate */
     border-spacing: 0 4px; /* Espaçamento vertical de 4px entre as linhas */
+    table-layout: auto; /* Isso ajusta a largura das células ao conteúdo */
+    border-collapse: collapse; /* Para uma borda mais compacta */
 }
 
-.table th {
+.table td, th {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/* .table th {
     position: sticky;
     top: 0;
     background-color: var(--cor-secundaria);
@@ -138,15 +147,12 @@
     font-weight: 600;
     text-align: center;
     z-index: 1;
-    border-bottom: 1px solid #ddd; /* Adicionada borda inferior sutil */
-}
+    border-bottom: 1px solid #ddd; 
+} */
 
 .table td {
-    padding: 0.875rem 1rem;
-    text-align: center;
-    border-top: 1px solid #f0f0f0; /* Borda superior sutil */
-    border-bottom: 1px solid #f0f0f0; /* Borda inferior sutil */
-    border-right: 1px solid #f0f0f0;
+    width: auto;  /* Ajusta o tamanho para o conteúdo */
+    min-width: 150px;
 }
 
 .table tbody tr {
@@ -155,7 +161,8 @@
 }
 
 .table tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.02);
+    background-color: rgba(0, 0, 0, 0.05);  /* Efeito de hover mais suave */
+    transition: background-color 0.3s ease;   /* Transição suave */
 }
 
 /* Ajuste para a primeira e última célula de cada linha */
@@ -191,6 +198,11 @@
     color: white;
 }
 
+.yellow-cell {
+    background-color: #c7ca09;
+    color: black;
+}
+
 .alert {
     color: #f44336;
     font-weight: bold;
@@ -200,6 +212,11 @@
     white-space: nowrap;
 }
 
+.invalid {
+    border-color: red;
+    background-color: #f8d7da;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .selectors {
@@ -207,6 +224,7 @@
     }
 
     .selector {
+        min-width: 150px;  /* Garante que os campos não fiquem muito pequenos */
         flex-basis: calc(50% - 0.5rem);
     }
 

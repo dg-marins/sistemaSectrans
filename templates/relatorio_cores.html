@@ -10,7 +10,7 @@
         <div class="selectors">
             <div class="selector">
                 <label for="empresa">Empresa:</label>
-                <select id="empresa" onchange="list_channels_by_company_id(this.value)">
+                <select id="empresa">
                     <option value="" disabled selected >Selecione a empresa</option>
                     {% for empresa in empresas %}
                         <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
@@ -62,41 +62,15 @@
             <table class="table" id="relatorioCoresTabela" >
                 <thead>
                     <tr>
-                        <th>Carro</th>
-                        <th>Modelo</th>
-                        <th>Data</th>
-                        <th>Arquivos</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Primeira linha com totais -->
-                    <tr class="summary-row">
-                        <td></td>
-                        <td></td>
-                        <td class="icon-cell"><i class="fas fa-wifi"></i> 87%</td>
-                        <td class="icon-cell"><i class="fas fa-wifi"></i> 100%</td>
-                        <td class="icon-cell"><i class="fas fa-wifi"></i> 61%</td>
-                        <td class="icon-cell"><i class="fas fa-wifi"></i> 61%</td>
-                        <td class="icon-cell"><i class="fas fa-wifi"></i> 100%</td>
-                        <td class="icon-cell"><i class="fas fa-wifi"></i> 87%</td>
-                        <td class="icon-cell"><i class="fas fa-wifi"></i> 96%</td>
-                    </tr>
                     <!-- Linhas de dados -->
-                    {% for i in "123456789"|make_list %}
                     <tr>
-                        <td><i class="fas fa-linux"></i> C1250{{i}}</td>
-                        <td>3204-W</td>
-                        <td class="{% if forloop.counter < 200 %}red-cell{% else %}green-cell{% endif %}">
-                            {% if forloop.counter < 200 %}x{% else %}{{forloop.counter}}{% endif %}
-                        </td>
-                        <td class="{% if 821 < 200 %}red-cell{% else %}green-cell{% endif %}">821</td>
-                        <td class="{% if 660 < 200 %}red-cell{% else %}green-cell{% endif %}">660</td>
-                        <td class="{% if 95 < 200 %}red-cell{% else %}green-cell{% endif %}">95</td>
-                        <td class="{% if 213 < 200 %}red-cell{% else %}green-cell{% endif %}">213</td>
-                        <td class="{% if 587 < 200 %}red-cell{% else %}green-cell{% endif %}">587</td>
-                        <td class="{% if 761 < 200 %}red-cell{% else %}green-cell{% endif %}">761</td>
+                        
                     </tr>
-                    {% endfor %}
+                    
                 </tbody>
             </table>
         </div>
