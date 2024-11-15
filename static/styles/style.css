@@ -184,10 +184,13 @@ body {
 .footer {
     background-color: var(--cor-principal);
     color: var(--cor-terciaria);
-    padding: 1rem;
-    text-align: center;
-    margin-top: auto;
+    padding: 0.5rem;
     border-radius: var(--borda-radius) var(--borda-radius) 0 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
 }
 
 /* Utilities */
