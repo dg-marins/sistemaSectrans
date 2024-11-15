@@ -1,5 +1,21 @@
 @import url('variaveis.css');
 
+/* Reset e configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .login-container {
 	min-height: 100vh;
 	display: flex;
@@ -10,7 +26,7 @@
 .login-header {
 	background-color: var(--cor-principal);
 	padding: 20px;
-	text-align: center;
+	text-align: left;
 }
 
 .login-header img {
@@ -32,7 +48,7 @@
 	background-color: var(--cor-terciaria);
 	padding: 30px;
 	border-radius: 10px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: var(--sombra-padrao);
 	width: 100%;
 	max-width: 400px;
 }

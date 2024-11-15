@@ -5,21 +5,21 @@ from .models import *
 admin.site.register(Modelo_Equipamento)
 
 class ListandoEmpresa(admin.ModelAdmin):
-    list_display = ("nome", "razao_social", "ativa",)
+    list_display = ("id", "nome", "razao_social", "ativa",)
     list_display_links = ("nome", "razao_social",)
     list_editable = ("ativa",)
 
 admin.site.register(Empresa, ListandoEmpresa)
 
 class ListandoRedes(admin.ModelAdmin):
-    list_display = ("nome", "chave", "empresa", "criptografia", "ip_servidor",)
+    list_display = ("id","nome", "chave", "empresa", "criptografia", "ip_servidor",)
     search_fields = ("nome",)
 
 admin.site.register(Rede, ListandoRedes)
 
 class CarrosAdmin(admin.ModelAdmin):
 
-    list_display = ("nome", "empresa", "rede", "modelo", "ip",)
+    list_display = ("id", "nome", "empresa", "rede", "modelo", "ip",)
     list_editable = ("ip",)
 
     # Para exibir campos no formulário de edição, mas não no cadastro
@@ -39,7 +39,7 @@ class CarrosAdmin(admin.ModelAdmin):
 admin.site.register(Carro, CarrosAdmin)
 
 class ServidoresAdmin(admin.ModelAdmin):
-    list_display = ("nome", "vpn", "ip_publico", "empresa",  "ativo")
+    list_display = ("id", "nome", "vpn", "ip_publico", "empresa",  "ativo")
 
 admin.site.register(Servidor, ServidoresAdmin)
 

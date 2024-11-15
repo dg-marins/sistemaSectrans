@@ -21,6 +21,7 @@ body {
     background-color: var(--cor-principal);
     padding: 1rem 2rem;
     box-shadow: var(--sombra-padrao);
+    border-radius: 0 0 var(--borda-radius) var(--borda-radius);
 }
 
 .header_content {
@@ -32,11 +33,15 @@ body {
 }
 
 .header_logo_content img {
-    height: 50px;
-    background-color: var(--cor-terciaria);
+
+    height: 60px;
+	background-color: var(--cor-terciaria);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    /* height: 50px;
+    background-color: var(--cor-terciaria); */
     border-radius: var(--borda-radius);
-    padding: 5px;
-    box-shadow: var(--sombra-padrao);
+    /* box-shadow: var(--sombra-padrao); */
     transition: var(--transicao-padrao);
 }
 
@@ -179,9 +184,13 @@ body {
 .footer {
     background-color: var(--cor-principal);
     color: var(--cor-terciaria);
-    padding: 1rem;
-    text-align: center;
-    margin-top: auto;
+    padding: 0.5rem;
+    border-radius: var(--borda-radius) var(--borda-radius) 0 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
 }
 
 /* Utilities */
