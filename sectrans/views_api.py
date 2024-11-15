@@ -10,6 +10,8 @@ from datetime import datetime
 from collections import defaultdict
 from collections import defaultdict, Counter
 from itertools import groupby
+import subprocess
+from django.views.decorators.http import require_http_methods, require_GET
 
 from .models import Video, Carro, Empresa, Servidor  # Importe os modelos relacionados
 
@@ -164,3 +166,17 @@ class ListarDadosRelatorioCores(APIView):
         }
 
         return JsonResponse(data, safe=False)
+
+class GetCodeVersion(APIView):
+    def get_git_tag(self):
+        try:
+            # Obtém a tag atual do Git
+            result = subprocess.check_output(['git', 'describe', '--tags'], stderr=subprocess.STDOUT)
+            return result.decode('utf-8').strip()
+        except subprocess.CalledProcessError:
+            return "Er.0.0.0"
+
+    def get(self, request):
+        # Retorna a tag como JSON
+        git_tag = self.get_git_tag()
+        return JsonResponse({"git_tag": git_tag})
