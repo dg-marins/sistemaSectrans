@@ -1,5 +1,5 @@
 from django.db import models
-from empresa import Empresa
+from .empresa import Empresa
 
 class Rede(models.Model):
     CRIPTOGRAFIA = {"WPA": "WPA", "WEP": "WEP"}

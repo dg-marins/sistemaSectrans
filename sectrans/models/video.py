@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils import timezone
-from carro import Carro
-from empresa import Empresa
-from servidor import Servidor
+from .carro import Carro
+from .empresa import Empresa
+from .servidor import Servidor
 
 
 class Video(models.Model):

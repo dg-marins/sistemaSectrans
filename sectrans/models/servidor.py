@@ -1,4 +1,4 @@
-from empresa import Empresa
+from .empresa import Empresa
 from django.db import models
 
 class Servidor(models.Model):

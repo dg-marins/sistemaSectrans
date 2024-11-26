@@ -1,7 +1,7 @@
 from django.db import models
-from empresa import Empresa
-from rede import Rede
-from modelo_equipamento import Modelo_Equipamento
+from .empresa import Empresa
+from .rede import Rede
+from .modelo_equipamento import Modelo_Equipamento
 from django.core.exceptions import ValidationError
 import re
 
