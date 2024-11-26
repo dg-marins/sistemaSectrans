@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import *
+from .models.modelo_equipamento import Modelo_Equipamento
+from .models.empresa import Empresa
+from .models.rede import Rede
+from .models.carro import Carro
+from .models.servidor import Servidor
+from .models.video import Video
 
 #Registra os modelos no admin
 admin.site.register(Modelo_Equipamento)

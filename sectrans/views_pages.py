@@ -1,7 +1,7 @@
 # views.py
 from django.shortcuts import render, redirect
-from .models import Empresa, Carro, Modelo_Equipamento
-from django.http import JsonResponse
+from .models.empresa import Empresa
+from .models.carro import Carro
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
