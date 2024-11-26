@@ -26,6 +26,7 @@ class CarrosAdmin(admin.ModelAdmin):
 
     list_display = ("id", "nome", "empresa", "rede", "modelo", "ip",)
     list_editable = ("ip",)
+    list_filter = ("empresa", "rede", "modelo")
 
     # Para exibir campos no formulário de edição, mas não no cadastro
     def get_fields(self, request, obj=None):
