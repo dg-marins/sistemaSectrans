@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from .models import Video
 
 class VideoDataSerializer(serializers.Serializer):
     video_file = serializers.CharField(max_length=255)

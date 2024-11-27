@@ -1,5 +1,5 @@
 from celery import shared_task
-from .models import Empresa, Servidor
+from .models.servidor import Servidor
 from django.utils import timezone
 import subprocess, os
 
