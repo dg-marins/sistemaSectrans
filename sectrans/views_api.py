@@ -114,7 +114,7 @@ class ListarModelosEquipamento(APIView):
     
 class ListarCarrosByEmpresaId(APIView):
     def get(self, request, empresa_id):
-        carros = Carro.objects.filter(empresa_id=empresa_id).select_related('modelo').values('id', 'nome', 'modelo')
+        carros = Carro.objects.filter(empresa_id=empresa_id).select_related('modelo').values('id', 'nome', 'modelo').order_by('nome')
         return JsonResponse(list(carros), safe=False)
 
 class ListarCamsByEmpresaId(APIView):
