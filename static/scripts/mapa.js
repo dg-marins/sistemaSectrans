@@ -62,11 +62,12 @@ class GpsMap {
     }
 
     exibirRota() {
-        const carroId = document.getElementById("carros").value;
+        const companyId = document.getElementById("empresa").value;
+        const carroId = document.getElementById("carro").value;
         const data = document.getElementById("data").value;
 
-        if (!carroId || !data) {
-            alert("Por favor, selecione um carro e uma data.");
+        if (!carroId || !data || !companyId) {
+            alert("Por favor, selecione empresa, carro e uma data.");
             return;
         }
 
