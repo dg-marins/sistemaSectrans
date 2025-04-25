@@ -2,18 +2,19 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Video, Empresa, Modelo_Equipamento, Carro
+from .models.video import Video
+from .models.empresa import Empresa
+from .models.modelo_equipamento import Modelo_Equipamento
+from .models.carro import Carro
+from .models.servidor import Servidor
 from .serializers import VideoDataSerializer, VideoRequestSerializer
 from django.http import JsonResponse
 from django.db.models import Max
 from datetime import datetime
 from collections import defaultdict
-from collections import defaultdict, Counter
-from itertools import groupby
+from collections import defaultdict
 import subprocess
-from django.views.decorators.http import require_http_methods, require_GET
 
-from .models import Video, Carro, Empresa, Servidor  # Importe os modelos relacionados
 
 class VideoRegister(APIView):
 
@@ -113,7 +114,7 @@ class ListarModelosEquipamento(APIView):
     
 class ListarCarrosByEmpresaId(APIView):
     def get(self, request, empresa_id):
-        carros = Carro.objects.filter(empresa_id=empresa_id).select_related('modelo').values('id', 'nome', 'modelo')
+        carros = Carro.objects.filter(empresa_id=empresa_id).select_related('modelo').values('id', 'nome', 'modelo').order_by('nome')
         return JsonResponse(list(carros), safe=False)
 
 class ListarCamsByEmpresaId(APIView):

@@ -12,13 +12,21 @@
     <div class="card-body">
         <form id="formMapa" class="form">
             <div class="form-row">
+
                 <div class="form-group col-md-6">
-                    <label class="form-label" for="carros">Carro</label>
-                    <select class="form-control" id="carros" required>
-                        <option value="" disabled selected>Selecione um carro</option>
-                        {% for carro in carros %}
-                            <option value="{{ carro.id }}">{{ carro.nome }}</option>
+                    <label class="form-label">Empresa</label>
+                    <select class="form-control" id="empresa" required>
+                        <option value="" disabled selected>Selecione Empresa</option>
+                        {% for empresa in empresas %}
+                            <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
                         {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="form-label">Carro</label>
+                    <select class="form-control" id="carro" required>
+                        <option value="" disabled selected>Selecione um carro</option>
                     </select>
                 </div>
 
@@ -28,7 +36,7 @@
                 </div>
 
                 <div class="form-group col-md-2 d-flex align-items-end">
-                    <button type="button" class="btn btn-primary btn-block" onclick="exibirRota()">
+                    <button id="btn" type="button" class="btn btn-primary btn-block">
                         <i class="fas fa-map-marked-alt"></i> Exibir Rota
                     </button>
                 </div>

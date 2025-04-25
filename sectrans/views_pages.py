@@ -1,7 +1,7 @@
 # views.py
 from django.shortcuts import render, redirect
-from .models import Empresa, Carro, Modelo_Equipamento
-from django.http import JsonResponse
+from .models.empresa import Empresa
+from .models.carro import Carro
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
@@ -34,5 +34,5 @@ def relatorio_cores_view(request):
     return render(request, 'relatorio_cores.html', {'empresas': empresas})
 
 def mapa_view(request):
-    carros = Carro.objects.all()
-    return render(request, 'mapa.html', {'carros': carros})
+    empresas = Empresa.objects.all().order_by('nome')
+    return render(request, 'mapa.html', {'empresas': empresas})
